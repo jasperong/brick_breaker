@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Brick Breakerzz</title>
+    <style>
+      * { padding: 0; margin: 0; }
+      canvas { background: #eee; display: block; margin: 100px auto; }
+    </style>
+  </head>
+  <body>
+
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+    // This is referencing the html canvas
+    // Storing the html canvas in canvas variable
+    var canvas = document.getElementById("myCanvas");
+    // Store 2D rendering context to canvas
+    var ctx = canvas.getContext("2d");
+    // Set ball starting point
+    var x = canvas.width / 2;
+    var y = canvas.height - 30;
+    // Set ball displacement per frame
+    var dx = 2;
+    var dy = -2;
+    // Set ball radius variable
+    var ballRadius = 10;
+    // Make ball
+    function drawBall() {
+      ctx.beginPath();
+      ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+      ctx.fillStyle = "#a3dd00";
+      ctx.fill();
+      ctx.closePath();
+    }
+    function draw() {
+      // Clear canvas every frame
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      // Draw ball every frame
+      drawBall();
+      // Make circle move
+      x += dx;
+      y += dy;
+    // Make ball bounce off walls
+    if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+      ctx.fillStyle = '#' + Math.floor(Math.random()*16777215).toString(16);
+      dy = -dy;
+    }
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+      dx = -dx;
+    }
+}
+  setInterval(draw, 10);
+
+
+    // // Print circle on canvas
+    // ctx.beginPath();
+    // ctx.arc(240, 160, 10, 0, Math.PI*2, false);
+    // ctx.fillStyle = "yellow";
+    // ctx.fill();
+    // ctx.strokeStyle = "orange";
+    // ctx.stroke();
+    // ctx.closePath;
+
+    // // Print a red square on canvas
+    // ctx.beginPath();
+    // ctx.rect(40, 40, 50, 50);
+    // ctx.fillStyle = "#f45b5b";
+    // ctx.fill();
+    // ctx.closePath();
+
+    </script>
+
+  </body>
+</html>
