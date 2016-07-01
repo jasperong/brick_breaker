@@ -5,7 +5,7 @@
     <title>Brick Breakerzz</title>
     <style>
       * { padding: 0; margin: 0; }
-      canvas { background: #eee; display: block; margin: 30px auto; }
+      canvas { background: #000; display: block; margin: 30px auto; }
     </style>
   </head>
   <body>
@@ -22,14 +22,14 @@
     var x = canvas.width / 2;
     var y = canvas.height - 30;
     // Set ball displacement per frame
-    var dx = 2;
-    var dy = -2;
+    var dx = 5;
+    var dy = -5;
     // Set ball radius variable
     var ballRadius = 10;
     // Set paddle dimensions and starting point
     var paddleHeight = 10;
     var paddleWidth = 100;
-    var paddleX = (canvas.width - paddleWidth) / 2;
+    var paddleX = (canvas.width - paddleWidth) / 2 ;
     // Define pressed buttons
     var rightPressed = false;
     var leftPressed = false;
@@ -84,7 +84,7 @@
     function drawBall() {
       ctx.beginPath();
       ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-      ctx.fillStyle = "#a3dd00";
+      ctx.fillStyle = colorBall();
       ctx.fill();
       ctx.closePath();
     }
@@ -96,8 +96,10 @@
     function drawPaddle() {
       ctx.beginPath();
       ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-      ctx.fillStyle = "#052a6b";
+      ctx.fillStyle = "#49fb00";
       ctx.fill();
+      ctx.strokeStyle = "#326b05";
+      ctx.stroke();
       ctx.closePath();
     }
     // Draw bricks
@@ -111,8 +113,10 @@
           bricks[c][r].y = brickY;
           ctx.beginPath();
           ctx.rect(brickX, brickY, brickWidth, brickHeight);
-          ctx.fillStyle = "052a6b";
+          ctx.fillStyle = "#49fb00";
           ctx.fill();
+          ctx.strokeStyle = "#326b05";
+          ctx.stroke();
           ctx.closePath;
           }
         }
@@ -140,7 +144,7 @@
             b.status = 0;
             score++;
             if (score == brickRowCount * brickColumnCount) {
-              // alert("YOU WIN BROOOOO!!!!!");
+              alert("YOU WIN BROOOOO!!!!!");
               document.location.reload();
             }
             }
@@ -148,7 +152,10 @@
         }
       }
     }
-
+    // RNG
+    function getRandom(min, max) {
+      return Math.random() * (max - min) + min;
+    }
     // Main function
     function draw() {
       // Clear canvas every frame
@@ -170,7 +177,7 @@
         else {
           lives--;
           if (!lives) {
-            // alert("GAME OVER");
+            alert("GAME OVER");
             document.location.reload();
           } else {
             x = canvas.width/2;
