@@ -180,11 +180,11 @@
             alert("GAME OVER");
             document.location.reload();
           } else {
-            x = canvas.width/2;
-            y = canvas.height-30;
-            dx = 2;
-            dy = -2;
-            paddleX = (canvas.width-paddleWidth)/2;
+            x = canvas.width / 2;
+            y = canvas.height - 30;
+            dx = 5;
+            dy = -5;
+            paddleX = (canvas.width-paddleWidth) / 2;
           }
         }
     }
@@ -203,8 +203,18 @@
       // Better way to render animation than setInterval(draw, 10)
       requestAnimationFrame(draw);
     }
-
-    draw();
+    // Start screen
+    var startScreen() {
+      ctx.beginPath();
+      ctx.rect(0, 0, 480, 540);
+      ctx.fillStyle = "yellow";
+      ctx.fill();
+      ctx.font = "16px Arial";
+      ctx.fillText("Click to start game", canvas.width / 2, canvas.height / 2);
+      ctx.closePath();
+    }
+    startScreen();
+    // draw();
 
     // // Print circle on canvas
     // ctx.beginPath();
