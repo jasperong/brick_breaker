@@ -116,7 +116,7 @@ function drawScore() {
 // Draw Lives
 function drawLives() {
   ctx.font = "16px Arial";
-  ctx.fillStyle = "052a6b";
+  ctx.fillStyle = "#052a6b";
   ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
 }
 function collisionDetection() {
@@ -129,7 +129,7 @@ function collisionDetection() {
         b.status = 0;
         score++;
         if (score == brickRowCount * brickColumnCount) {
-          alert("YOU WIN BROOOOO!!!!!");
+          alert("YOU WIN!!!!!");
           document.location.reload();
         }
         }
@@ -188,7 +188,17 @@ function draw() {
   // Better way to render animation than setInterval(draw, 10)
   requestAnimationFrame(draw);
 }
-draw();
+
+drawBall();
+drawPaddle();
+drawBricks();
+drawScore();
+drawLives();
+
+$('canvas').on('click', function() {
+
+  draw();
+});
 // // Start screen
 // var startScreen() {
 //   ctx.beginPath();
